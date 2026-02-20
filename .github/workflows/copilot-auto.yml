@@ -1,0 +1,67 @@
+name: Copilot Auto Issue Handler
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  issues: write
+  contents: read
+
+jobs:
+  prepare-for-copilot:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      # 1️⃣ Validate Issue Content
+      - name: Validate Issue Body
+        if: ${{ github.event.issue.body == '' }}
+        uses: peter-evans/close-issue@v3
+        with:
+          comment: |
+            ❌ This issue has no description.
+
+            Please provide:
+            - Clear problem statement
+            - Steps to reproduce
+            - Expected behavior
+
+            Then reopen the issue.
+          reason: not_planned
+
+      # 2️⃣ Add Copilot Label
+      - name: Add Copilot Label
+        if: ${{ github.event.issue.body != '' }}
+        uses: actions-ecosystem/action-add-labels@v1
+        with:
+          labels: copilot-task
+
+      # 3️⃣ Assign Issue (optional - assigns to creator)
+      - name: Auto Assign Creator
+        if: ${{ github.event.issue.body != '' }}
+        uses: pozil/auto-assign-issue@v1
+        with:
+          assignees: ${{ github.event.issue.user.login }}
+
+      # 4️⃣ Add Copilot Workspace Instructions
+      - name: Add Copilot Instructions Comment
+        if: ${{ github.event.issue.body != '' }}
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          issue-number: ${{ github.event.issue.number }}
+          body: |
+            🤖 This issue is ready for **Copilot Workspace**.
+
+            👉 Next Steps:
+            1. Open Copilot Workspace
+            2. Click **Task**
+            3. Select this issue
+            4. Generate plan
+            5. Review implementation
+            6. Create Pull Request
+
+            ⚠️ Make sure:
+            - Plan looks correct
+            - Changes are minimal
+            - Tests pass before merge
