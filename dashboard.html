@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Dashboard | MBR Library</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#135bec",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#101622",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                },
+            },
+        }
+    </script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-background-light dark:bg-background-dark min-h-screen font-display">
+    <header class="bg-white dark:bg-slate-900 shadow-sm">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="bg-primary p-2 rounded-lg">
+                    <span class="material-symbols-outlined text-white text-2xl">auto_stories</span>
+                </div>
+                <h1 class="text-xl font-bold text-slate-900 dark:text-white tracking-tight">MBR Library</h1>
+            </div>
+            <a href="index.html" class="text-sm font-semibold text-primary hover:text-primary/80 flex items-center gap-1">
+                <span class="material-symbols-outlined text-base">logout</span>
+                Sign Out
+            </a>
+        </div>
+    </header>
+    <main class="max-w-7xl mx-auto px-6 py-12">
+        <div class="mb-8">
+            <h2 class="text-3xl font-bold text-slate-900 dark:text-white">Welcome to your Dashboard</h2>
+            <p class="text-slate-500 dark:text-slate-400 mt-2">Browse and manage your library resources.</p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            <div class="bg-white dark:bg-slate-900 rounded-xl p-6 shadow-sm flex items-center gap-4">
+                <div class="bg-primary/10 p-3 rounded-lg">
+                    <span class="material-symbols-outlined text-primary text-2xl">menu_book</span>
+                </div>
+                <div>
+                    <p class="text-2xl font-bold text-slate-900 dark:text-white">3</p>
+                    <p class="text-sm text-slate-500 dark:text-slate-400">Books Borrowed</p>
+                </div>
+            </div>
+            <div class="bg-white dark:bg-slate-900 rounded-xl p-6 shadow-sm flex items-center gap-4">
+                <div class="bg-primary/10 p-3 rounded-lg">
+                    <span class="material-symbols-outlined text-primary text-2xl">bookmark</span>
+                </div>
+                <div>
+                    <p class="text-2xl font-bold text-slate-900 dark:text-white">12</p>
+                    <p class="text-sm text-slate-500 dark:text-slate-400">Saved Items</p>
+                </div>
+            </div>
+            <div class="bg-white dark:bg-slate-900 rounded-xl p-6 shadow-sm flex items-center gap-4">
+                <div class="bg-primary/10 p-3 rounded-lg">
+                    <span class="material-symbols-outlined text-primary text-2xl">history</span>
+                </div>
+                <div>
+                    <p class="text-2xl font-bold text-slate-900 dark:text-white">27</p>
+                    <p class="text-sm text-slate-500 dark:text-slate-400">Books Read</p>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
