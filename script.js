@@ -72,10 +72,14 @@ document.addEventListener('DOMContentLoaded', () => {
             submitBtn.innerHTML = '<span class="material-symbols-outlined animate-spin">sync</span> Processing...';
 
             setTimeout(() => {
-                alert(`${form.id === 'form-login' ? 'Login' : 'Registration'} successful!`);
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = originalText;
-                form.reset();
+                if (form.id === 'form-login') {
+                    window.location.replace('dashboard.html');
+                } else {
+                    alert('Registration successful!');
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalText;
+                    form.reset();
+                }
             }, 1500);
         });
     });
